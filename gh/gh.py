@@ -37,6 +37,9 @@ def api_call(endpoint, method, field_name = None):
                 'https://api.github.com/{}'.format(endpoint),
                 headers=headers)
             rj = r.json()
+            if r.status_code != 200:
+                print(json.dumps(rj))
+                exit(22)
             if field_name:
                 if field_name in rj:
                     return(rj[field_name])
@@ -44,8 +47,7 @@ def api_call(endpoint, method, field_name = None):
                     exit(23)
             else:
                 return json.dumps(r.json())
-            if r.status_code == 404:
-                exit(22)
+
     s.close()
 
 
