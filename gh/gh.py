@@ -17,7 +17,7 @@ from cachecontrol.caches.file_cache import FileCache
 from .__about__ import __version__
 
 
-def api_call(endpoint, method, field_name = None):
+def api_call(endpoint, method, field_name=None):
     endpoint = endpoint.lstrip('/')
     headers = {}
     cache_dir = user_cache_dir("gh")
@@ -51,7 +51,6 @@ def api_call(endpoint, method, field_name = None):
     s.close()
 
 
-
 def main():
     parser = argparse.ArgumentParser(description='Low-level GitHub API request interface.')
     parser.add_argument('endpoint', metavar='ENDPOINT',
@@ -76,6 +75,7 @@ def main():
     output = api_call(args.endpoint, args.method, args.field_name)
 
     print(output)
+
 
 if __name__ == "__main__":
     main()
