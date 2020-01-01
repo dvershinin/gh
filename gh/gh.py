@@ -3,11 +3,13 @@ gh
 ==========
 License: BSD, see LICENSE for more details.
 """
+from __future__ import print_function
 
 import argparse
 import json
 import logging as log  # for verbose output
 import os
+import sys
 
 import requests
 from appdirs import user_cache_dir
@@ -16,6 +18,8 @@ from cachecontrol.caches.file_cache import FileCache
 
 from .__about__ import __version__
 
+def eprint(*args, **kwargs):
+    print(*args, file=sys.stderr, **kwargs)
 
 def api_call(endpoint, method, field_name=None):
     endpoint = endpoint.lstrip('/')
@@ -38,7 +42,7 @@ def api_call(endpoint, method, field_name=None):
                 headers=headers)
             rj = r.json()
             if r.status_code != 200:
-                print(json.dumps(rj))
+                eprint(json.dumps(rj))
                 exit(22)
             if field_name:
                 if field_name in rj:
