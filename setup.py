@@ -31,7 +31,7 @@ setup(
     description="Low-level GitHub API request interface. With caching",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    packages=find_packages(exclude=["tests"]),
+    packages=find_packages(exclude=["tests", "tests.*"]),
     zip_safe=False,
     license="BSD",
     install_requires=install_requires,
